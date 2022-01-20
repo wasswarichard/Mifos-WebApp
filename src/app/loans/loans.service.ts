@@ -222,7 +222,12 @@ export class LoansService {
    */
   loanActionButtons(loanId: any, command: any, data?: any): Observable<any> {
     const httpParams = new HttpParams().set('command', command);
-    return this.http.post(`/loans/${loanId}`, data, {params: httpParams});
+    const payload =  {
+      ...data,
+      locale: 'en'
+    }
+    delete payload.local;
+    return this.http.post(`/loans/${loanId}`, payload, {params: httpParams});
   }
 
   /**
@@ -300,6 +305,7 @@ export class LoansService {
    * @param {any} loanAccount Loan Account
    */
   createLoansAccount(loanAccount: any): Observable<any> {
+    delete loanAccount.recalculationCompoundingFrequencyDate;
     return this.http.post('/loans', loanAccount);
   }
 
