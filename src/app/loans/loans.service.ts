@@ -224,7 +224,7 @@ export class LoansService {
     const httpParams = new HttpParams().set('command', command);
     const payload =  {
       ...data,
-      locale: data.local
+      locale: 'en',
     };
     delete payload.local;
     return this.http.post(`/loans/${loanId}`, payload, {params: httpParams});
