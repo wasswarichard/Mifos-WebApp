@@ -10,7 +10,7 @@
 
           <mat-form-field>
             <mat-label>Approved On</mat-label>
-            <input matInput [min]="minDate" [matDatepicker]="approvedDatePicker" required
+            <input matInput [matDatepicker]="approvedDatePicker" required
               formControlName="approvedOnDate">
             <mat-datepicker-toggle matSuffix [for]="approvedDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #approvedDatePicker></mat-datepicker>
@@ -21,7 +21,7 @@
 
           <mat-form-field>
             <mat-label>Expected disbursement on</mat-label>
-            <input matInput [min]="minDate" [matDatepicker]="disbursementDatePicker"
+            <input matInput [matDatepicker]="disbursementDatePicker"
               formControlName="expectedDisbursementDate">
             <mat-datepicker-toggle matSuffix [for]="disbursementDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #disbursementDatePicker></mat-datepicker>
