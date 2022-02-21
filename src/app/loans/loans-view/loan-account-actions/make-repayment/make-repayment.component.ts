@@ -55,7 +55,7 @@ export class MakeRepaymentComponent implements OnInit {
    */
   ngOnInit() {
     this.createRepaymentLoanForm();
-    // this.setRepaymentLoanDetails();
+    this.setRepaymentLoanDetails();
   }
 
   /**
@@ -71,10 +71,43 @@ export class MakeRepaymentComponent implements OnInit {
   }
 
   setRepaymentLoanDetails() {
-    this.paymentTypes = this.dataObject.paymentTypeOptions;
+    // temporarily solution
+    this.paymentTypes = [
+      {
+        'id': 1,
+        'name': 'Money Transfer',
+        'description': 'Money Transfer',
+        'isCashPayment': false,
+        'position': 1
+      },
+      {
+        'id': 2,
+        'name': 'Deposit',
+        'description': '',
+        'isCashPayment': true,
+        'position': 2
+      },
+      {
+        'id': 3,
+        'name': 'Cheque',
+        'description': '',
+        'isCashPayment': false,
+        'position': 3
+      },
+      {
+        'id': 4,
+        'name': 'Transfer',
+        'description': '',
+        'isCashPayment': false,
+        'position': 4
+      }
+    ];
+
+    // this.paymentTypes = this.dataObject.paymentTypeOptions;
+
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount,
-      transactionDate: new Date(this.dataObject.date)
+      transactionDate: new Date()
     });
   }
 
