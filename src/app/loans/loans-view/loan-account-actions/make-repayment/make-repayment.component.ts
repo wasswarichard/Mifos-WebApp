@@ -109,10 +109,11 @@ export class MakeRepaymentComponent implements OnInit {
     const repaymentLoanData = this.repaymentLoanForm.value;
     repaymentLoanData.locale = this.settingsService.language.code;
     repaymentLoanData.dateFormat = dateFormat;
-    this.loanService.submitLoanActionButton(this.loanId, repaymentLoanData, 'repayment')
-      .subscribe((response: any) => {
-        this.router.navigate(['../../../general'], { relativeTo: this.route });
-    });
+
+    this.loanService.submitLoanActionButton(this.loanId, repaymentLoanData, 'repayment' )
+        .subscribe((response: any) => {
+          this.router.navigate(['../../general'], { relativeTo: this.route });
+        });
   }
 
 }

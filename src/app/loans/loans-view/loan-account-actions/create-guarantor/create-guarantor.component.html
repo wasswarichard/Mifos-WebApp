@@ -38,23 +38,23 @@
               </mat-select>
             </mat-form-field>
 
-            <ng-container *ngIf="accountOptions.length > 0">
+<!--            <ng-container *ngIf="accountOptions.length > 0">-->
 
-              <mat-form-field>
-                <mat-label>Account</mat-label>
-                <mat-select formControlName="savingsId">
-                  <mat-option *ngFor="let accountOption of accountOptions" [value]="accountOption.id">
-                    {{ accountOption.productName }} - {{ accountOption.accountNo }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+<!--              <mat-form-field>-->
+<!--                <mat-label>Account</mat-label>-->
+<!--                <mat-select formControlName="savingsId">-->
+<!--                  <mat-option *ngFor="let accountOption of accountOptions" [value]="accountOption.id">-->
+<!--                    {{ accountOption.productName }} - {{ accountOption.accountNo }}-->
+<!--                  </mat-option>-->
+<!--                </mat-select>-->
+<!--              </mat-form-field>-->
 
-              <mat-form-field>
-                <mat-label>Amount</mat-label>
-                <input type="number" matInput required formControlName="amount" required>
-              </mat-form-field>
+<!--              <mat-form-field>-->
+<!--                <mat-label>Amount</mat-label>-->
+<!--                <input type="number" matInput required formControlName="amount" required>-->
+<!--              </mat-form-field>-->
 
-            </ng-container>
+<!--            </ng-container>-->
 
           </ng-container>
 
