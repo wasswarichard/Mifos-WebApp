@@ -11,8 +11,6 @@ import { environment } from '../../../environments/environment';
 /** Http request options headers. */
 const httpOptions = {
   headers: {
-    // 'Fineract-Platform-TenantId': environment.fineractPlatformTenantId,
-    'Fineract-Platform-TenantId': localStorage.getItem('tenant')
   }
 };
 
@@ -47,6 +45,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     } else {
       httpOptions.headers[authorizationHeader] = `Basic ${authenticationKey}`;
     }
+  }
+
+  setTenantId(tenantId: string){
+    httpOptions.headers['Fineract-Platform-TenantId'] = tenantId;
   }
 
   /**

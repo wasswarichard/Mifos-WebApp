@@ -38,6 +38,8 @@ export class AuthenticationService {
   private storage: any;
   /** User credentials. */
 
+  private tenantId: string;
+
   private credentials: Credentials;
   /** Key to store credentials in storage. */
   private credentialsStorageKey = 'mifosXCredentials';
@@ -84,9 +86,11 @@ export class AuthenticationService {
    * @returns {Observable<boolean>} True if authentication is successful.
    */
   login(loginContext: LoginContext) {
+    this.authenticationInterceptor.setTenantId(loginContext.tenant);
     this.alertService.alert({ type: 'Authentication Start', message: 'Please wait...' });
     this.rememberMe = loginContext.remember;
     this.storage = this.rememberMe ? localStorage : sessionStorage;
+    this.tenantId = loginContext.tenant;
 
     if (environment.oauth.enabled) {
       let httpParams = new HttpParams();
@@ -330,6 +334,10 @@ export class AuthenticationService {
         this.login(loginContext).subscribe();
       })
     );
+  }
+  
+  getTenantId(): string {
+    return this.tenantId;
   }
 
 }

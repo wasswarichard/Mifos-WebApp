@@ -48,7 +48,6 @@ export class LoginFormComponent implements OnInit {
   login() {
     this.loading = true;
     this.loginForm.disable();
-    localStorage.setItem('tenant', this.loginForm.value.tenant);
     this.authenticationService.login(this.loginForm.value)
       .pipe(finalize(() => {
         this.loginForm.reset();

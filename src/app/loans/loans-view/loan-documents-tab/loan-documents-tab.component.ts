@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 /** Custom Services */
 import { environment } from 'environments/environment';
 import { LoansService } from 'app/loans/loans.service';
+import { AuthenticationService } from '../../../core/authentication/authentication.service';
 
 /** Dialog Components */
 import { LoanAccountLoadDocumentsDialogComponent } from 'app/loans/custom-dialog/loan-account-load-documents-dialog/loan-account-load-documents-dialog.component';
@@ -47,10 +48,15 @@ export class LoanDocumentsTabComponent implements OnInit {
   /**
    * Retrieves the loans data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
+   * @param loansService
+   * @param dialog
+   * @param authenticationService
    */
   constructor(private route: ActivatedRoute,
     private loansService: LoansService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+              private authenticationService: AuthenticationService
+  ) {
     this.route.data.subscribe((data: { loanDocuments: any }) => {
       this.getLoanDocumentsData(data.loanDocuments);
     });
@@ -72,7 +78,7 @@ export class LoanDocumentsTabComponent implements OnInit {
   getLoanDocumentsData(data: any) {
     data.forEach((ele: any) => {
       let loandocs = {};
-      loandocs = environment.serverUrl + '/loans/' + ele.parentEntityId + '/documents/' + ele.id + '/attachment?tenantIdentifier=' + localStorage.getItem('tenant');
+      loandocs = environment.serverUrl + '/loans/' + ele.parentEntityId + '/documents/' + ele.id + '/attachment?tenantIdentifier=' + this.authenticationService.getTenantId();
       ele.docUrl = loandocs;
       if (ele.fileName) {
         if (ele.fileName.toLowerCase().indexOf('.jpg') !== -1 || ele.fileName.toLowerCase().indexOf('.jpeg') !== -1 || ele.fileName.toLowerCase().indexOf('.png') !== -1) {
