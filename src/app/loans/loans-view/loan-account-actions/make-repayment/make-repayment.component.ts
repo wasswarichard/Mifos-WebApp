@@ -55,7 +55,7 @@ export class MakeRepaymentComponent implements OnInit {
    */
   ngOnInit() {
     this.createRepaymentLoanForm();
-    // this.setRepaymentLoanDetails();
+    this.setRepaymentLoanDetails();
   }
 
   /**
@@ -74,7 +74,7 @@ export class MakeRepaymentComponent implements OnInit {
     this.paymentTypes = this.dataObject.paymentTypeOptions;
     this.repaymentLoanForm.patchValue({
       transactionAmount: this.dataObject.amount,
-      transactionDate: new Date()
+      transactionDate: new Date(this.dataObject.date)
     });
   }
 
