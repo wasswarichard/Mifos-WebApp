@@ -306,6 +306,7 @@ export class LoansService {
    */
   createLoansAccount(loanAccount: any): Observable<any> {
     delete loanAccount.recalculationCompoundingFrequencyDate;
+    delete loanAccount.collateral;
     return this.http.post('/loans', loanAccount);
   }
 
