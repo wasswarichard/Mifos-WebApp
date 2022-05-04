@@ -9,9 +9,8 @@ import env from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
-  // fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
-  // baseApiUrl: 'https://dev.mifos.io',  // For connecting to server running elsewhere update the base API URL
-  baseApiUrl: 'https://50.116.55.70:8443',
+  baseApiUrl: 'https://45.79.164.152:8443',  // test environment
+  // baseApiUrl: 'https://170.187.206.162:8443',  // production environment
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
   serverUrl: '',
