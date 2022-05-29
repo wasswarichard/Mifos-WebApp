@@ -26,10 +26,10 @@ export class LoansAccountAddCollateralDialogComponent implements OnInit {
 
   ngOnInit() {
     this.dialogRef.updateSize('400px');
-    this.collateralTypeData = this.data.collateralTypeOptions;
   }
 
   createAddCollateralForm() {
+    this.collateralTypeData = this.data.collateralTypeOptions;
     this.addCollateralForm = this.formBuilder.group({
       'type': ['', Validators.required],
       'value': ['', Validators.required],

@@ -64,10 +64,15 @@ export class SettingsService {
    * Returns language setting
    */
   get language() {
-    if (!localStorage.getItem('mifosXLanguage')) {
-      this.setDefaultLanguage();
+    // if (!localStorage.getItem('mifosXLanguage')) {
+    //   this.setDefaultLanguage();
+    // }
+    // return JSON.parse(localStorage.getItem('mifosXLanguage'));
+
+    return {
+      name: 'English',
+      code: 'en'
     }
-    return JSON.parse(localStorage.getItem('mifosXLanguage'));
   }
 
   /**

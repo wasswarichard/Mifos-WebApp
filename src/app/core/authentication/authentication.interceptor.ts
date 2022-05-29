@@ -11,7 +11,6 @@ import { environment } from '../../../environments/environment';
 /** Http request options headers. */
 const httpOptions = {
   headers: {
-    'Fineract-Platform-TenantId': environment.fineractPlatformTenantId
   }
 };
 
@@ -54,6 +53,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
    */
   setTwoFactorAccessToken(twoFactorAccessToken: string) {
     httpOptions.headers[twoFactorAccessTokenHeader] = twoFactorAccessToken;
+  }
+
+  setTenantId(tenantId: string){
+    httpOptions.headers['Fineract-Platform-TenantId'] = tenantId;
   }
 
   /**

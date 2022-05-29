@@ -70,6 +70,7 @@ export class LoginFormComponent implements OnInit {
    */
   private createLoginForm() {
     this.loginForm = this.formBuilder.group({
+      'tenant': ['', Validators.required],
       'username': ['', Validators.required],
       'password': ['', Validators.required],
       'remember': false

@@ -21,7 +21,10 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
   /** Minimum date allowed. */
   minDate = new Date(2000, 0, 1);
   /** Maximum date allowed. */
-  maxDate = new Date();
+  futureMonth = new Date().getMonth() + 1;
+  currentYear = new Date().getFullYear();
+  currentDay = new Date().getDay() - 1;
+  maxDate = new Date(this.currentYear, this.futureMonth, this.currentDay );
   /** Loans Account Terms Form */
   loansAccountTermsForm: FormGroup;
   /** Term Frequency Type Data */

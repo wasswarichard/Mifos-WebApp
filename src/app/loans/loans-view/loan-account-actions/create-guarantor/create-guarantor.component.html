@@ -23,7 +23,7 @@
             </mat-form-field>
 
             <mat-autocomplete autoActiveFirstOption #clientsAutocomplete="matAutocomplete" [displayWith]="displayClient"
-              (optionSelected)='clientSelected($event.option.value)'>
+                              (optionSelected)='clientSelected($event.option.value)'>
               <mat-option *ngFor="let client of clientsData" [value]="client">
                 {{ client.displayName }}
               </mat-option>
@@ -38,23 +38,23 @@
               </mat-select>
             </mat-form-field>
 
-            <ng-container *ngIf="accountOptions.length > 0">
+            <!--            <ng-container *ngIf="accountOptions.length > 0">-->
 
-              <mat-form-field>
-                <mat-label>Account</mat-label>
-                <mat-select formControlName="savingsId">
-                  <mat-option *ngFor="let accountOption of accountOptions" [value]="accountOption.id">
-                    {{ accountOption.productName }} - {{ accountOption.accountNo }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+            <!--              <mat-form-field>-->
+            <!--                <mat-label>Account</mat-label>-->
+            <!--                <mat-select formControlName="savingsId">-->
+            <!--                  <mat-option *ngFor="let accountOption of accountOptions" [value]="accountOption.id">-->
+            <!--                    {{ accountOption.productName }} - {{ accountOption.accountNo }}-->
+            <!--                  </mat-option>-->
+            <!--                </mat-select>-->
+            <!--              </mat-form-field>-->
 
-              <mat-form-field>
-                <mat-label>Amount</mat-label>
-                <input type="number" matInput required formControlName="amount" required>
-              </mat-form-field>
+            <!--              <mat-form-field>-->
+            <!--                <mat-label>Amount</mat-label>-->
+            <!--                <input type="number" matInput required formControlName="amount" required>-->
+            <!--              </mat-form-field>-->
 
-            </ng-container>
+            <!--            </ng-container>-->
 
           </ng-container>
 
@@ -87,7 +87,7 @@
 
             <mat-form-field>
               <mat-label>Date Of Birth</mat-label>
-              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dobDatePicker" formControlName="dob">
+              <input matInput [max]="maxDate" [matDatepicker]="dobDatePicker" formControlName="dob">
               <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
               <mat-datepicker #dobDatePicker></mat-datepicker>
             </mat-form-field>
@@ -129,7 +129,7 @@
         <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
           <button type="button" mat-raised-button [routerLink]="['../../general']">Cancel</button>
           <button mat-raised-button color="primary" [disabled]="!newGuarantorForm.valid"
-            *mifosxHasPermission="'CREATE_GUARANTOR'">Submit</button>
+                  *mifosxHasPermission="'CREATE_GUARANTOR'">Submit</button>
         </mat-card-actions>
 
       </mat-card-content>

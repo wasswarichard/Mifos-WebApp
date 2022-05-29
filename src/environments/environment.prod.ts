@@ -4,8 +4,8 @@ import env from './.env';
 export const environment = {
   production: true,
   version: env.mifos_x_version,
-  fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
-  baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
+  baseApiUrl: 'https://45.79.164.152:8443',  // test environment
+  // baseApiUrl: 'https://170.187.206.162:8443',  // production environment
   allowServerSwitch: env.allow_switching_backend_instance,
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
