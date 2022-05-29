@@ -6,7 +6,7 @@ export const environment = {
   version: env.mifos_x_version,
   baseApiUrl: 'https://45.79.164.152:8443',  // test environment
   // baseApiUrl: 'https://170.187.206.162:8443',  // production environment
-  // allowServerSwitch: env.allow_switching_backend_instance,
+  allowServerSwitch: env.allow_switching_backend_instance,
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
   serverUrl: '',
