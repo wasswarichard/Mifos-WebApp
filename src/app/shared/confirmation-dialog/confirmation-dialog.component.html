@@ -1,16 +1,6 @@
 <h1 mat-dialog-title>{{data.heading}}</h1>
 <div mat-dialog-content>
-  <div>
-    <p>{{ data.dialogContext }} ?</p>
-  </div>
-  <div>
-    <mat-form-field fxFlex="100%">
-    <mat-label>{{data.date?.label}}</mat-label>
-    <input matInput  [matDatepicker]="transferDatePicker" required formControlName={{data.date.value}}>
-    <mat-datepicker-toggle matSuffix [for]="transferDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #transferDatePicker></mat-datepicker>
-    </mat-form-field>
-  </div>
+  <p>{{ data.dialogContext }} ?</p>
 </div>
 <mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Cancel</button>
