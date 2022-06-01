@@ -13,6 +13,9 @@ import { ConfirmationDialogComponent } from 'app/shared/confirmation-dialog/conf
 /** Custom Services */
 import { TasksService } from '../../tasks.service';
 import { SettingsService } from 'app/settings/settings.service';
+import {FormfieldBase} from '../../../shared/form-dialog/formfield/model/formfield-base';
+import {DatepickerBase} from '../../../shared/form-dialog/formfield/model/datepicker-base';
+import {FormDialogComponent} from '../../../shared/form-dialog/form-dialog.component';
 
 @Component({
   selector: 'mifosx-loan-approval',
@@ -120,19 +123,33 @@ export class LoanApprovalComponent {
   }
 
   approveLoan() {
-    const approveLoanDialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { heading: 'Approve Loan', dialogContext: 'Are you sure you want to Approve Loan' }
-    });
-    approveLoanDialogRef.afterClosed().subscribe((response: { confirm: any }) => {
-      if (response.confirm) {
-        this.bulkLoanApproval();
+    const formfields: FormfieldBase[] = [
+      new DatepickerBase({
+        controlName: 'approvedOnDate',
+        label: 'Approve On Date',
+        value: new Date(),
+        type: 'datetime-local',
+        required: true
+      })
+    ];
+
+    const data = {
+      title: 'Enter Loan Approve Date',
+      layout: { addButtonText: 'Confirm' },
+      formfields: formfields
+    };
+
+    const approveLoanDialogRef = this.dialog.open(FormDialogComponent, {data});
+    approveLoanDialogRef.afterClosed().subscribe((response: any) => {
+      if (response.data) {
+        this.bulkLoanApproval(response.data);
       }
     });
   }
 
-  bulkLoanApproval() {
+  bulkLoanApproval(submittedData: any) {
     const dateFormat = this.settingsService.dateFormat;
-    const approvedOnDate = this.datePipe.transform(new Date(), dateFormat);
+    const approvedOnDate = this.datePipe.transform(submittedData.value.approvedOnDate, dateFormat);
     const locale = this.settingsService.language.code;
     const formData = {
       dateFormat,
