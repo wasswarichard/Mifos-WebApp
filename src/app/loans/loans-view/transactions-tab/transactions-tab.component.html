@@ -2,12 +2,8 @@
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px" class="transaction-buttons" *ngIf="checkStatus()">
     <mat-checkbox [formControl]="hideAccrualsParam" (click)="hideAccruals()" class="accruals">Hide Accruals</mat-checkbox>
-    <button mat-raised-button color="primary" [routerLink]="['export']">
-      Export
-    </button>
-    <button mat-raised-button color="primary">
-      View Journal Entries
-    </button>
+      <button mat-raised-button color="primary" [routerLink]="['export']">Export</button>
+      <button mat-raised-button color="primary" [routerLink]="['/accounting', 'journal-entries']">View Journal Entries</button>
   </div>
 
   <table mat-table [dataSource]="showTransactionsData">
