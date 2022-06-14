@@ -33,12 +33,14 @@ export class CreateLoansAccountComponent implements OnInit {
   loansAccountProductTemplate: any;
   /** Collateral Options */
   collateralOptions: any;
+  /** Multi Disburse Loan */
+  multiDisburseLoan: any;
 
   /**
    * Sets loans account create form.
    * @param {route} ActivatedRoute Activated Route.
    * @param {router} Router Router.
-   * @param {datePipe} DatePipe Date Pipe
+   * @param {datePipe} DatePipe Date Utils
    * @param {loansService} LoansService Loans Service
    * @param {SettingsService} settingsService Settings Service
    */
@@ -64,6 +66,11 @@ export class CreateLoansAccountComponent implements OnInit {
     this.loansAccountProductTemplate = $event;
     this.loansService.getLoansCollateralTemplateResource(this.loansAccountProductTemplate.loanProductId).subscribe((response: any) => {
       this.collateralOptions = response.loanCollateralOptions;
+    });
+    const clientId = this.loansAccountTemplate.clientId;
+    const productId = this.loansAccountProductTemplate.loanProductId;
+    this.loansService.getLoansAccountTemplateResource(clientId, productId).subscribe((response: any) => {
+      this.multiDisburseLoan = response.multiDisburseLoan;
     });
   }
 
@@ -114,6 +121,10 @@ export class CreateLoansAccountComponent implements OnInit {
         value: collateralEle.value,
         description: collateralEle.description
       })),
+      disbursementData: this.loansAccount.disbursementData.map((item: any) => ({
+        expectedDisbursementDate: this.dateUtils.formatDate(item.expectedDisbursementDate, dateFormat),
+        principal: item.principal
+      })),
       interestChargedFromDate: this.dateUtils.formatDate(this.loansAccount.interestChargedFromDate, dateFormat),
       repaymentsStartingFromDate: this.dateUtils.formatDate(this.loansAccount.repaymentsStartingFromDate, dateFormat),
       submittedOnDate: this.dateUtils.formatDate(this.loansAccount.submittedOnDate, dateFormat),
@@ -145,6 +156,9 @@ export class CreateLoansAccountComponent implements OnInit {
     }
     if (!(loansAccountData.isFloatingInterestRate === false)) {
       delete loansAccountData.isFloatingInterestRate;
+    }
+    if (!(this.multiDisburseLoan)) {
+      delete loansAccountData.disbursementData;
     }
 
     this.loansService.createLoansAccount(loansAccountData).subscribe((response: any) => {
