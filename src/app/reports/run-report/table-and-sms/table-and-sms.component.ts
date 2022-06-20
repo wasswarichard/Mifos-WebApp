@@ -90,6 +90,16 @@ export class TableAndSmsComponent implements OnChanges {
     link.click();
     document.body.removeChild(link);
   }
+  printTable() {
+    const tableData = document.getElementById('tablerecords');
+    const tableWindow = window.open('');
+    tableWindow.document.write(tableData.outerHTML);
+    tableWindow.document.close();
+    tableWindow.focus();
+    tableWindow.print();
+    tableWindow.close();
+
+  }
 
   /**
    * Returns number formatted as per user's decimal choice.
